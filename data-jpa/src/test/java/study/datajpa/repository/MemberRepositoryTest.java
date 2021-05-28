@@ -237,6 +237,12 @@ class MemberRepositoryTest {
         // when
         Page<Member> page = memberRepository.findByAge(age, pageRequest);
 
+        Page<MemberDTO> map = page.map(member -> new MemberDTO(member.getId(), member.getUsername(), null));
+
+        for (MemberDTO memberDTO : map) {
+            System.out.println("memberDTO = " + memberDTO);
+        }
+
         // then
         List<Member> content = page.getContent();
         long totalElements = page.getTotalElements();
