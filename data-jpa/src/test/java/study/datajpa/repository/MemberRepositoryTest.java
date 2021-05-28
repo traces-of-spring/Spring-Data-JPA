@@ -211,4 +211,5 @@ class MemberRepositoryTest {
         // then
         System.out.println("result = " + result);
     }
+
 }

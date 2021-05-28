@@ -101,4 +101,34 @@ class MemberJpaRepositoryTest {
 //        // then
 //        assertThat(result.get(0)).isEqualTo(member1);
 //    }
+    
+    @Test
+    @DisplayName("순수 JPA 페이징과 정렬 테스트")
+    void paging() throws Exception {
+        // given
+        memberJpaRepository.save(new Member("member1", 10));
+        memberJpaRepository.save(new Member("member2", 10));
+        memberJpaRepository.save(new Member("member3", 10));
+        memberJpaRepository.save(new Member("member4", 10));
+        memberJpaRepository.save(new Member("member5", 10));
+        memberJpaRepository.save(new Member("member6", 10));
+        memberJpaRepository.save(new Member("member7", 10));
+
+        int age = 10;
+        int offset = 0;
+        int limit = 3;
+
+        // when
+        List<Member> members = memberJpaRepository.findByPage(age, offset, limit);
+        long totalCount = memberJpaRepository.totalCount(age);
+
+        // then
+        // 페이지 계산 공식 적용...
+        // totalPage = totalCount / size
+        // 마지막 페이지
+        // 최초 페이지
+
+        assertThat(members.size()).isEqualTo(3);
+        assertThat(totalCount).isEqualTo(7);
+    }
 }
