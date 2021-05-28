@@ -195,4 +195,20 @@ class MemberRepositoryTest {
             System.out.println(" Member = " + m);
         }
     }
+
+    @Test
+    @DisplayName("반환 타입 테스트")
+    void findOptional() throws Exception {
+        // given
+        Member member1 = new Member("AAA", 10);
+        Member member2 = new Member("BBB", 20);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        // when
+        Optional<Member> result = memberRepository.findOptionalByUsername("BBB");
+
+        // then
+        System.out.println("result = " + result);
+    }
 }
