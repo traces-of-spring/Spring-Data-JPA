@@ -11,6 +11,7 @@ import study.datajpa.dto.MemberDTO;
 import study.datajpa.entity.Member;
 import study.datajpa.entity.Team;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -158,7 +159,7 @@ class MemberRepositoryTest {
     }
 
     @Test
-    @DisplayName("@Query 테스트")
+    @DisplayName("@Query DTO 테스트")
     void findMemberDTOtest() throws Exception {
         // given
         Team team = new Team("team1");
@@ -174,6 +175,24 @@ class MemberRepositoryTest {
         // then
         for (MemberDTO s : result) {
             System.out.println(" s = " + s);
+        }
+    }
+
+    @Test
+    @DisplayName("@Query - 컬렉션 파라미터 바인딩 테스트")
+    void findByNames() throws Exception {
+        // given
+        Member member1 = new Member("AAA", 10);
+        Member member2 = new Member("BBB", 20);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        // when
+        List<Member> result = memberRepository.findByNames(Arrays.asList("AAA", "BBB"));
+
+        // then
+        for (Member m : result) {
+            System.out.println(" Member = " + m);
         }
     }
 }
