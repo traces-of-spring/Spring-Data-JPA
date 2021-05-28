@@ -86,19 +86,19 @@ class MemberJpaRepositoryTest {
         
     }
 
-    @Test
-    @DisplayName("이름으로 찾는 테스트")
-    void findByUsernameTest() throws Exception {
-        // given
-        Member member1 = new Member("AAA", 10);
-        Member member2 = new Member("BBB", 20);
-        memberJpaRepository.save(member1);
-        memberJpaRepository.save(member2);
-
-        // when
-        List<Member> result = memberJpaRepository.findByUsername("AAA");
-
-        // then
-        assertThat(result.get(0)).isEqualTo(member1);
-    }
+//    @Test
+//    @DisplayName("이름으로 찾는 테스트")
+//    void findByUsernameTest() throws Exception {
+//        // given
+//        Member member1 = new Member("AAA", 10);
+//        Member member2 = new Member("BBB", 20);
+//        memberJpaRepository.save(member1);
+//        memberJpaRepository.save(member2);
+//
+//        // when
+//        List<Member> result = memberJpaRepository.findByUsername("AAA");
+//
+//        // then
+//        assertThat(result.get(0)).isEqualTo(member1);
+//    }
 }
