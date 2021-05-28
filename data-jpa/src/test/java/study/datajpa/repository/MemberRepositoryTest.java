@@ -14,6 +14,7 @@ import study.datajpa.dto.MemberDTO;
 import study.datajpa.entity.Member;
 import study.datajpa.entity.Team;
 
+import javax.persistence.EntityManager;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +32,9 @@ class MemberRepositoryTest {
 
     @Autowired
     TeamRepository teamRepository;
+
+    @Autowired
+    EntityManager em;
 
     @Test
     @DisplayName("멤버 테스트")
@@ -273,6 +277,8 @@ class MemberRepositoryTest {
 
         // when
         int resultCount = memberRepository.bulkAgePlus(20);
+//        em.flush();
+//        em.clear();
 
         // then
         assertThat(resultCount).isEqualTo(3);
